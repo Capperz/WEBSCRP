@@ -23,7 +23,7 @@
         <template>
           <div class="temp">
             <p id="signedin">placeholder</p>
-            <button onclick="getDbLength()" type="button" name="button">get unit length</button>
+            <button onclick="getUnits()" type="button" name="button">get unit length</button>
               <button onclick = "toggleAdd()" type="button" name="button">Add Unit</button>
               <div class="addUnit">
                 <p id="unitname">Unit Name</p>
@@ -33,7 +33,12 @@
               </div>
           </div>
         </template>
+        <div class="unitlist"></div>
+          <template id="unit">
+            <h3 class="unittitle"></h3>
+          </template>
       </main>
+
 <!-- testing stuff -->
 <!-- end of testing stuff -->
 

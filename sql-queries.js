@@ -12,6 +12,16 @@ async function getUnitLength() {
   return Number(rows[0].count);
 }
 
+async function listUnits() {
+  const sql = await init();
+
+  const query = 'SELECT id, unitname FROM unit_list ORDER BY id';
+  const [rows] = await sql.query(query);
+  return rows;
+}
+
+
+
 async function addUnit(unitname, userid) {
   const sql = await init();
   const insertQuery = sql.format('INSERT INTO unit_list SET ? ;', {unitname, userid});
@@ -56,5 +66,6 @@ process.on('unhandledRejection', console.error);
 module.exports = {
   getLength: getUnitLength,
   shutDown: shutDown,
-  addUnit: addUnit
+  addUnit: addUnit,
+  listUnits: listUnits,
 }

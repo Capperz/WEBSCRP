@@ -31,7 +31,10 @@ app.get('/api/length', async (req, res) => {
   res.send(length + '');
 });
 
-
+app.get('/api/unit_list', async (req, res) => {
+  const units = await unitdb.listUnits();
+  res.send(units);
+});
 
 app.post('/api/add', async (req, res) => {
   const userId = req.user.id;

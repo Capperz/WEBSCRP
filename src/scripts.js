@@ -94,6 +94,33 @@ async function addUnit() {
     console.log("not broken");
     console.log(response.status);
   }
+  getUnits();
+}
+
+async function getUnits() {
+  const id_token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token;
+
+  const fetchOptions = {
+    credentials: 'same-origin',
+    method: 'GET',
+    headers: { 'Authorization': 'Bearer ' + id_token },
+  };
+  const response = await fetch('/api/unit_list', fetchOptions);
+  if (!response.ok) {
+    console.log(response.status);
+    return;
+  }
+  const data = await response.json();
+  const unitList = document.querySelector('.unitlist');
+  unitList.innerHTML = '';
+  if (data.length == 0) {
+    return;
+  }
+  data.forEach((i) => {
+    const unitTemplate = document.getElementById('unit').content.cloneNode(true);
+    unitTemplate.querySelector('.unittitle').textContent = i.unitname;
+    unitList.appendChild(unitTemplate);
+  });
 }
 
 
