@@ -1,0 +1,18 @@
+{
+  "name": "studyplan",
+  "version": "1.0.0",
+  "description": "a simple study planning application for lecturers to organise their time more effectively",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mysql2": "^1.5.2",
+    "simple-google-openid": "^0.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server.js",
+    "initdb": "mysql -u root -p < createdb.sql"
+  },
+  "author": "UP829438",
+  "license": "ISC"
+}

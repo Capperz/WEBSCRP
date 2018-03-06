@@ -1,0 +1,70 @@
+:root {
+  --bg-colour: #D5D6D2;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: var(--bg-colour);
+  font-family: 'Open Sans', sans-serif;
+}
+
+#unitcontainer {
+  background-color: #324851;
+  display: grid;
+  width: 100%;
+  height: 4em;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas:
+  "head head head head"
+
+}
+
+  #unitcontainer > .logo {
+    grid-area: head;
+    height: inherit;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    grid-column-start: 2;
+    grid-column-end: 4;
+  }
+
+  #unitcontainer > #signin {
+    grid-area: head;
+    grid-column: 4;
+    margin: auto;
+  }
+
+  #unitcontainer > #signout {
+    grid-area: head;
+    grid-column: 4;
+    margin: auto;
+    color: white;
+  }
+
+#logo {
+  height: 2em;
+  width: 2em;
+}
+
+.addUnit {
+  display: none;
+  background-color: #FF8D3F;
+  width: 10em;
+}
+
+#adderror {
+  color: red;
+}
+
+.none {
+  display: none;
+}
+
+.show {
+  display: block;
+}
