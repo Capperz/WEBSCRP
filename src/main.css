@@ -51,6 +51,12 @@ body {
   width: 2em;
 }
 
+#unittable {
+  display: block;
+  width: 10em;
+  outline: 1px solid black;
+}
+
 .addUnit {
   display: none;
   background-color: #FF8D3F;

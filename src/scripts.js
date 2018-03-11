@@ -19,6 +19,7 @@ function onSignIn(googleUser) {
   callServer();
   renderSignIn();
   buttonToggle();
+  getUnits();
 }
 
 function onfailure() {
@@ -116,6 +117,7 @@ async function getUnits() {
   if (data.length == 0) {
     return;
   }
+
   data.forEach((i) => {
     const unitTemplate = document.getElementById('unit').content.cloneNode(true);
     unitTemplate.querySelector('.unittitle').textContent = i.unitname;

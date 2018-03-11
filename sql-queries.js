@@ -12,14 +12,13 @@ async function getUnitLength() {
   return Number(rows[0].count);
 }
 
-async function listUnits() {
+async function listUnits(userid) {
+  console.log(userid);
   const sql = await init();
-
-  const query = 'SELECT id, unitname FROM unit_list ORDER BY id';
+  const query = sql.format(`SELECT unitname FROM unit_list WHERE userid LIKE ? ORDER BY id`, [userid]);
   const [rows] = await sql.query(query);
   return rows;
 }
-
 
 
 async function addUnit(unitname, userid) {

@@ -32,7 +32,8 @@ app.get('/api/length', async (req, res) => {
 });
 
 app.get('/api/unit_list', async (req, res) => {
-  const units = await unitdb.listUnits();
+  const userId = req.user.id;
+  const units = await unitdb.listUnits(userId);
   res.send(units);
 });
 
