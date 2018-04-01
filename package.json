@@ -10,7 +10,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node server.js",
+    "dashboard": "node server.js",
     "initdb": "mysql -u root -p < createdb.sql"
   },
   "author": "UP829438",
