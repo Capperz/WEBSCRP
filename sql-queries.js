@@ -5,46 +5,53 @@ const config = require('./config.json');
 
 let mysqlConn = null;
 
-async function mysqlConnection() //Handles MySQL Database connections
+//Handles MySQL Database connections
+async function mysqlConnection()
 {
-  if (mysqlConn) //If a connection already exists
+  if (mysqlConn)
   {
-    return mysqlConn; //Return the existing connection
+    return mysqlConn;
   }
-  else { //Else if no connection exists
-    mysqlConn = newMysqlConnection(); //Make a new connection
-    return mysqlConn; //Return the new connection
+  else {
+    //Make a new connection and return it
+    mysqlConn = newMysqlConnection();
+    return mysqlConn;
   }
 }
 
-async function newMysqlConnection() { //Creates a MySQL Database connection
-  const newMysqlConn = await mysql.createConnection(config.mysql); //Create MySQL connection using the settings from the config
-  return newMysqlConn; //Return the new connection
+//Creates a MySQL Database connection
+async function newMysqlConnection() {
+  //Create MySQL connection using the settings from the config
+  const newMysqlConn = await mysql.createConnection(config.mysql);
+  return newMysqlConn;
 }
 
-async function mysqlSelect(queryStr,queryVars){ //Runs MySQL Select Queries and returns results
+//Runs MySQL Select Queries and returns results
+async function mysqlSelect(queryStr,queryVars){
   try {
-  const sqlConnection = await mysqlConnection(); //get the connection
-  const newQuery = sqlConnection.format(queryStr,queryVars); //format the query to avoid SQL Injection
-  let [results, fields] = await sqlConnection.execute(newQuery) //run query
-  return results; //return results
+  const sqlConnection = await mysqlConnection();
+  //format the query to avoid SQL Injection
+  const newQuery = sqlConnection.format(queryStr,queryVars);
+  let [results, fields] = await sqlConnection.execute(newQuery)
+  return results;
   }
   catch (error){
-    console.log(error);
-    return null; //return null as an SQL error was encountered trying to select
+    console.log("SQL Failure:", error);
+    return null;
   }
 }
 
-async function mysqlInsert(queryStr,queryVars){ //Runs MySQL Insert Queries and returns whether the query was successful
+//Runs MySQL Insert Queries and returns whether the query was successful
+async function mysqlInsert(queryStr,queryVars){
   try {
-  const sqlConnection = await mysqlConnection(); //get the connection
-  const newQuery = sqlConnection.format(queryStr,queryVars); //format the query to avoid SQL Injection
-  await sqlConnection.query(newQuery) //run query
-  return true; //return true as any errors would drop to the catch statement below
+  const sqlConnection = await mysqlConnection();
+  const newQuery = sqlConnection.format(queryStr,queryVars);
+  await sqlConnection.query(newQuery)
+  return true;
   }
   catch (error){
-    console.log("\x1b[31mSQL Failure:\n\x1b[37m%s\x1b[0m",error); //catch SQL errors and print to console in colour
-    return false; //return false as there was an SQL error
+    console.log("SQL Failure:",error);
+    return false;
   }
 }
 
