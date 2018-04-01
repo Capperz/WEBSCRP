@@ -1,4 +1,4 @@
-Lecturer planning application.
+# WEBSCRP Lecturer planning application.
 
 ## To start the application:
 - Load up your selected terminal (you must have mysql, node JS and git bash installed).
