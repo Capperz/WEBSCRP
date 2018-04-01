@@ -13,6 +13,8 @@ List of possible future expansions to project:
 - deleting a unit/week
 - text box for week content
 - implementing web sockets
+- uploading files
+- archiving units and viewing them in the archived section
 
 ## Retrospective
 Looking back at this project, my biggest regret is not starting early enough. The time constraint caught up on me very quickly and I have not been able to complete the project to a quality that I would have liked to implement. However the code I have completed, I am happy with and think that it is of good quality. I should have approached the task in a different manner, setting smaller goals for myself and an amount of time to complete them. 
