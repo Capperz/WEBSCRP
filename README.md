@@ -3,7 +3,7 @@ A simple lecturer planning application aimed at easing lecturer's schedule build
 
 ## To start the application:
 - Load up your selected terminal (you must have mysql, node JS and git bash installed).
-- type ```git clone https://github.com/UP829438/WEBSCRP.git``` to clone the repository to your VM
+- type ```git clone https://github.com/UP829438/WEBSCRP.git``` to clone the repository.
 - navigate to the directory cloned and type ```npm install``` to install all necessary packages for the app to work.
 - type ```npm run initdb``` and, using password **root**, the database will be initialised.
 - type ```npm start``` to start the server and enter localhost in the address bar of your selected browser to view the website in action.
