@@ -4,48 +4,67 @@
 const express = require('express');
 const app = express();
 const mysql = require('mysql2/promise');
-
 const GoogleAuth = require('simple-google-openid');
-const unitdb = require('./sql-queries.js');
+const database = require('./sql-queries.js');
 
-// you can put your client ID here
 app.use(GoogleAuth('684640848172-mopuc1c4mnmv9fhnnd3vj8ugnfd4o4gv.apps.googleusercontent.com'));
 
-// this will serve the HTML file shown below
+//simple express server
 app.use('/', express.static('src'));
-
-
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`StudyPlan app listening on port ${PORT}!`);
 });
 
 
-app.get('/api/hello', (req, res) => {
-  res.send('Hello ' + (req.user.displayName || 'user without a name') + '!');
-  console.log('successful authenticated request by ' + req.user.emails[0].value);
-});
 
-app.get('/api/length', async (req, res) => {
-  const length = await unitdb.getLength();
-  res.send(length + '');
-});
+app.get('/api/auth', userAuth);
+app.get('/api/week_list', getWeeks);
+app.get('/api/unit_list', getUnits);
+app.post('/api/addunit', addUnit);
+app.post('/api/addweek', addWeek);
 
-app.get('/api/unit_list', async (req, res) => {
+async function userAuth(req, res) {
+  const userID = req.user.id;
+  await database.addUser(userID);
+  res.sendStatus(200);
+};
+
+async function getUnits(req, res) {
   const userId = req.user.id;
-  const units = await unitdb.listUnits(userId);
+  const units = await database.getUnits(userId);
   res.send(units);
-});
+};
 
-app.post('/api/add', async (req, res) => {
+async function addUnit(req,res) {
   const userId = req.user.id;
   const unitName = req.query.unitname;
-  console.log(req.query.unitname);
+  const unitColour = req.query.unitcolour;
   if (unitName == "") {
     res.sendStatus(400);
   }
   else {
-    await unitdb.addUnit(unitName, userId);
+    await database.addUnit(unitName, userId, unitColour);
     res.sendStatus(200);
   }
-});
+};
+
+async function addWeek(req, res) {
+  const userID = req.user.id;
+  const weekDesc = req.query.weekdesc;
+  const unitID = req.query.unitid;
+  if (weekDesc == "") {
+    res.sendStatus(400);
+  }
+  else {
+    await database.addWeek(userID, unitID, weekDesc);
+    res.sendStatus(200);
+  }
+};
+
+async function getWeeks(req, res){
+  const userID = req.user.id;
+  const unitID = req.query.unit;
+  const weeks = await database.getWeeks(userID, unitID);
+  res.send(weeks);
+};

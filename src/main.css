@@ -44,7 +44,45 @@ body {
     grid-column: 4;
     margin: auto;
     color: white;
+    cursor: pointer;
   }
+
+.toolbar {
+  grid-area: toolbar;
+  display: block;
+}
+
+.toolbar > button {
+  cursor: pointer;
+  width: 100%;
+  height: 50%;
+  border: none;
+  background-color: #324851;
+  color: white;
+  font-size: 1em;
+}
+
+
+.unitbox {
+  transition: all 0.3s ease;
+  display: block;
+  width: auto;
+}
+
+.unitbox:hover {
+  cursor: pointer;
+  background-color: black;
+}
+
+.tablecontainer {
+  display: grid;
+  background-color: lightblue;
+  width: 50em;
+  margin: 1em auto;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+  "unit week toolbar"
+}
 
 #logo {
   height: 2em;
@@ -53,14 +91,46 @@ body {
 
 #unittable {
   display: block;
-  width: 10em;
-  outline: 1px solid black;
+  text-align: center;
+  width: 100%;
+}
+
+#unittable li {
+  border: 1px solid black;
+}
+
+.unitlist {
+  grid-area: unit;
+  height: 10em;
+  overflow-y: scroll;
+}
+
+#weektable {
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+
+#weektable li {
+  border: 1px solid black;
+}
+
+.weeklist {
+  grid-area: week;
+  height: 10em;
+  overflow-y: scroll;
 }
 
 .addUnit {
+  grid-area: toolbar;
   display: none;
   background-color: #FF8D3F;
-  width: 10em;
+}
+
+.addWeek {
+  grid-area: toolbar;
+  display: none;
+  background-color: #FF8D3F;
 }
 
 #adderror {

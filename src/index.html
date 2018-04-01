@@ -1,44 +1,61 @@
 <!DOCTYPE html>
 
 <head>
-    <link rel="icon" type="image/png" sizes="16x16" href="img/logo/icon.ico">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="main.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta charset="UTF-8">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="scripts.js"></script>
-    <meta name="google-signin-client_id" content="684640848172-mopuc1c4mnmv9fhnnd3vj8ugnfd4o4gv.apps.googleusercontent.com">
-    <title>Home Page</title>
+  <link rel="icon" type="image/png" sizes="16x16" href="img/logo/icon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="main.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script src="scripts.js"></script>
+  <meta name="google-signin-client_id" content="684640848172-mopuc1c4mnmv9fhnnd3vj8ugnfd4o4gv.apps.googleusercontent.com">
+  <title>Home Page</title>
 </head>
 
 <body>
-      <section id="unitcontainer">
-      <img class="logo" src="./img/logo/logo.png" alt="logo for the website">
-      <div id="signin" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-      <div style="cursor: pointer;" id="signout" onclick="signOut();">Sign Out</div>
-      </section>
-      <main id="main">
-        <template>
-            <button onclick="getUnits()" type="button" name="button">get units</button>
+  <section id="unitcontainer">
+    <img class="logo" src="./img/logo/logo.png" alt="logo for the website">
+    <div id="signin" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <div id="signout" onclick="signOut();">Sign Out</div>
+  </section>
+  <main id="main">
+    <p id="signedin"></p>
+    <template>
+        <div class="tablecontainer">
+          <div class="toolbar">
               <button onclick = "toggleAdd()" type="button" name="button">Add Unit</button>
-              <div class="addUnit">
-                <p id="unitname">Unit Name</p>
-                <input id="addunit" type="text" name="unit_name" value="">
-                <input id="addsubmit" type="submit" value="Submit" onclick="addUnit()">
-                <p id="adderror"></p>
-              </div>
-        </template>
-        <div class="unitlist"></div>
+              <button onclick = "toggleWeek()" type="button" name="button">Add Week</button>
+          </div>
+        <div class="unitlist">
+          <ul id="unittable"></ul>
+        </div>
           <template id="unit">
-              <ul id="unittable">
-                <li><a class="unittitle"></a></li>
-              </ul>
+                <li class="unitbox"><a class="unittitle"></a></li>
           </template>
-      </main>
-
-<!-- testing stuff -->
-<!-- end of testing stuff -->
-
+    <div class="weeklist">
+      <ul id="weektable"></ul>
+    </div>
+    <template id="week">
+                <li class="weekbox"><a class="weektitle"></a></li>
+          </template>
+          <div class="addUnit">
+            <p id="unitname">Unit Name</p>
+            <input id="addunit" type="text" name="unit_name" value="">
+            <p>Colour:</p>
+            <input id="addcolour" type="color" name="color_name" value="000000">
+            <input id="addsubmit" type="submit" value="Submit" onclick="addUnit()">
+            <input id="unitclose" type="submit" value="Close" onclick="toggleAdd()">
+            <p id="adderror"></p>
+          </div>
+          <div class="addWeek">
+            <p id="weekname">Week Description</p>
+            <p id="weekerror"></p>
+            <input id="weekdesc" type="text" name="weekDesc" value="">
+            <input id="weeksubmit" type="submit" value="Submit">
+            <input id="weekclose" type="submit" value="Close" onclick="toggleWeek()">
+          </div>
+    </div>
+    </template>
+  </main>
 </body>
