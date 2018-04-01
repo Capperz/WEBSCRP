@@ -1,4 +1,5 @@
 # WEBSCRP Lecturer planning application.
+A simple lecturer planning application aimed at easing lecturer's schedule building.
 
 ## To start the application:
 - Load up your selected terminal (you must have mysql, node JS and git bash installed).
